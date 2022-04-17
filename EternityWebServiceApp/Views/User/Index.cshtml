@@ -1,0 +1,43 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "Пользователи";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Никнейм</th>
+        <th>Роль</th>
+        <th><a asp-controller="User" asp-action="Create">Добавить</a></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        @foreach (var role in ViewBag.Roles)
+        {
+            @if (item.RoleId == role.RoleId)
+            {
+                <tr>
+                    <td>@item.UserId</td>
+                    <td>@item.Email</td>
+                    <td>@item.UserName</td>
+                    <td>@role.Name</td>
+
+                    @if (item.UserId != 1)
+                    {
+                        <td>
+                            <a asp-controller="User" asp-action="Edit" asp-route-id="@item.UserId">Изменить</a> |
+                            <a asp-controller="User" asp-action="Delete" asp-route-id="@item.UserId">Удалить</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                </tr>
+            }
+        }
+    }
+</table>

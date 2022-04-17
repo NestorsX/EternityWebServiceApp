@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EternityWebServiceApp.Models.GameScore>
+@{
+    ViewData["Title"] = "Лучшие результаты в играх";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Пользователь</th>
+        <th>Игра</th>
+        <th>Счет</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @foreach (var user in ViewBag.User)
+        {
+            @if (item.UserId == user.UserId)
+            {
+                @foreach (var game in ViewBag.Game)
+                {
+                    @if (item.GameId == game.GameId)
+                    {
+                        <tr>
+                            <td>@item.GameScoreId</td>
+                            <td>@user.UserName</td>
+                            <td>@game.Name</td>
+                            <td>@item.Score</td>
+                            <td>
+                                <a asp-controller="GameScore" asp-action="Delete" asp-route-id="@item.GameScoreId">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        }
+    }
+</table>
