@@ -1,4 +1,4 @@
-﻿@model             User
+﻿@model EternityWebServiceApp.Models.User
 @{
     ViewData["Title"] = "Редактировать пользователя";
 }
@@ -14,6 +14,11 @@
             <span asp-validation-for="Email"></span>
         </div>
         <div class="form-group">
+            <label asp-for="UserName">Никнейм</label>
+            <input type="text" asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName"></span>
+        </div>
+        <div class="form-group">
             <label asp-for="Password">Пароль</label>
             <input type="text" asp-for="Password" class="form-control" />
             <span asp-validation-for="Password"></span>
@@ -24,7 +29,7 @@
                 <option value="0">Выберите роль</option>
                 @foreach (Role role in ViewBag.Roles)
                 {
-                    if ((int)ViewData["RoleId"] == role.RoleId)
+                    @if ((int)ViewData["RoleId"] == role.RoleId)
                     {
                         <option value="@role.RoleId" selected>@role.Name</option>
                     }
@@ -37,26 +42,6 @@
             <span asp-validation-for="RoleId"></span>
         </div>
         <div class="form-group">
-            <label asp-for="UserDatum.FirstName">Имя</label>
-            <input type="text" asp-for="UserDatum.FirstName" class="form-control" />
-            <span asp-validation-for="UserDatum.FirstName"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UserDatum.SecondName">Отчество</label>
-            <input type="text" asp-for="UserDatum.SecondName" class="form-control" />
-            <span asp-validation-for="UserDatum.SecondName"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UserDatum.LastName">Фамилия</label>
-            <input type="text" asp-for="UserDatum.LastName" class="form-control" />
-            <span asp-validation-for="UserDatum.LastName"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UserDatum.PhoneNumber">Телефон</label>
-            <input type="text" asp-for="UserDatum.PhoneNumber" class="form-control" id="Phone" />
-            <span asp-validation-for="UserDatum.PhoneNumber"></span>
-        </div>
-        <div class="form-group">
             <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
         </div>
     </div>
@@ -65,9 +50,3 @@
 <div>
     <a asp-controller="User" asp-action="Index">Вернуться к списку</a>
 </div>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/plugins/jquery.maskedinput.js"></script>
-<script type="text/javascript">
-    $("#Phone").mask("+375(99)999-99-99");
-</script>

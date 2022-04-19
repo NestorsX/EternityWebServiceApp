@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace EternityWebServiceApp.Controllers
 {
     [Authorize]
-    public class AttractionsController : Controller
+    public class AttractionController : Controller
     {
         private readonly IRepository<Attraction> _repository;
 
-        public AttractionsController(IRepository<Attraction> repository)
+        public AttractionController(IRepository<Attraction> repository)
         {
             _repository = repository;
         }

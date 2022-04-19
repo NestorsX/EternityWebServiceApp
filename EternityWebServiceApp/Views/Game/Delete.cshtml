@@ -1,26 +1,26 @@
-﻿@model             Service
+﻿@model EternityWebServiceApp.Models.Game
 @{
-    ViewData["Title"] = "Удаление сервиса";
+    ViewData["Title"] = "Удаление игры";
 }
 <h2>@ViewData["Title"]</h2>
 
 <table class="table">
     <tr>
         <th>ID</th>
-        <th>Сервис</th>
+        <th>Игра</th>
     </tr>
     <tr>
-        <td>@Model.ServiceId</td>
+        <td>@Model.GameId</td>
         <td>@Model.Name</td>
     </tr>
 </table>
  
-<form asp-action="Delete" asp-controller="Service" method="post">
+<form asp-action="Delete" asp-controller="Game" method="post">
     <div class="form-group">
         <input type="submit" class="btn btn-outline-secondary" value="Удалить" />
     </div>
 </form>
 
 <div>
-    <a asp-controller="Service" asp-action="Index">Вернуться к списку</a>
+    <a asp-controller="Game" asp-action="Index">Вернуться к списку</a>
 </div>

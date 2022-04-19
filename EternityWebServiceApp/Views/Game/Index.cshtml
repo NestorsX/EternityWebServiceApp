@@ -1,25 +1,25 @@
-﻿@model IEnumerable<Service>
+﻿@model IEnumerable<Game>
 @{
-    ViewData["Title"] = "Сервисы";
+    ViewData["Title"] = "Игры";
 }
 <h2>@ViewData["Title"]</h2>
 
 <table class="table">
     <tr>
         <th>ID</th>
-        <th>Сервис</th>
-        <th><a asp-controller="Service" asp-action="Create">Добавить</a></th>
+        <th>Игра</th>
+        <th><a asp-controller="Game" asp-action="Create">Добавить</a></th>
     </tr>
     
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.ServiceId</td>
+            <td>@item.GameId</td>
             <td>@item.Name</td>
 
             <td>
-                <a asp-controller="Service" asp-action="Edit" asp-route-id="@item.ServiceId">Изменить</a> |
-                <a asp-controller="Service" asp-action="Delete" asp-route-id="@item.ServiceId">Удалить</a>
+                <a asp-controller="Game" asp-action="Edit" asp-route-id="@item.GameId">Изменить</a> |
+                <a asp-controller="Game" asp-action="Delete" asp-route-id="@item.GameId">Удалить</a>
             </td>
         </tr>
     }

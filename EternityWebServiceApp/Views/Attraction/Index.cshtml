@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Attraction>
+@{
+    ViewData["Title"] = "Достопримечательности";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Достопримечательность</th>
+        <th>Описание</th>
+        <th><a asp-controller="Attraction" asp-action="Create">Добавить</a></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.AttractionId</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+
+            <td>
+                <a asp-controller="Attraction" asp-action="Edit" asp-route-id="@item.AttractionId">Изменить</a> |
+                <a asp-controller="Attraction" asp-action="Delete" asp-route-id="@item.AttractionId">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>

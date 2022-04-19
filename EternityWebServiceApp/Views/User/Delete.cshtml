@@ -1,4 +1,4 @@
-﻿@model             User
+﻿@model EternityWebServiceApp.Models.User
 @{
     ViewData["Title"] = "Удаление пользователя";
 }
@@ -8,20 +8,14 @@
     <tr>
         <th>ID</th>
         <th>Email</th>
+        <th>Никнейм</th>
         <th>Роль</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Фамилия</th>
-        <th>Телефон</th>
     </tr>
     <tr>
         <td>@Model.UserId</td>
         <td>@Model.Email</td>
+        <td>@Model.UserName</td>
         <td>@ViewData["RoleName"]</td>
-        <td>@Model.UserDatum.FirstName</td>
-        <td>@Model.UserDatum.SecondName</td>
-        <td>@Model.UserDatum.LastName</td>
-        <td>@Model.UserDatum.PhoneNumber</td>
     </tr>
 </table>
  

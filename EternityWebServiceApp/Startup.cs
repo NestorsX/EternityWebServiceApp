@@ -38,7 +38,7 @@ namespace EternityWebServiceApp
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "YourVitebskWebServiceApp", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EternityWebServiceApp", Version = "v1" });
             });
         }
 
@@ -48,7 +48,7 @@ namespace EternityWebServiceApp
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "YourVitebskWebServiceApp v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EternityWebServiceApp v1"));
             }
 
             app.UseDefaultFiles();

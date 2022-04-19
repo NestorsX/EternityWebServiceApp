@@ -1,0 +1,28 @@
+﻿@model IEnumerable<City>
+@{
+    ViewData["Title"] = "Города";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Город</th>
+        <th>Описание</th>
+        <th><a asp-controller="City" asp-action="Create">Добавить</a></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CityId</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+
+            <td>
+                <a asp-controller="City" asp-action="Edit" asp-route-id="@item.CityId">Изменить</a> |
+                <a asp-controller="City" asp-action="Delete" asp-route-id="@item.CityId">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>

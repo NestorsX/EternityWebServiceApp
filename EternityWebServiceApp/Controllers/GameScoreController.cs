@@ -20,8 +20,6 @@ namespace EternityWebServiceApp.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Users = _context.Users;
-            ViewBag.Games = _context.Games;
             return View(_repository.Get());
         }
 
@@ -32,8 +30,6 @@ namespace EternityWebServiceApp.Controllers
             GameScore gameScore = _repository.Get(id);
             if (gameScore != null)
             {
-                ViewData["User"] = _context.Users.First(x => x.UserId == gameScore.UserId).UserName;
-                ViewData["Game"] = _context.Games.First(x => x.GameId == gameScore.GameId).Name;
                 return View(gameScore);
             }
 
