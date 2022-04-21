@@ -33,7 +33,7 @@ namespace EternityWebServiceApp
             services.AddScoped<IRepository<Role>, RoleRepository>();
             services.AddScoped<IRepository<Game>, GameRepository>();
             services.AddScoped<IGameScoreRepository, GameScoreRepository>();
-            services.AddScoped<IRepository<City>, CityRepository>();
+            services.AddScoped<IImageRepository<City>, CityRepository>();
             services.AddScoped<IRepository<Attraction>, AttractionRepository>();
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>

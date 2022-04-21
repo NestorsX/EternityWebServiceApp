@@ -1,6 +1,8 @@
 ﻿using EternityWebServiceApp.Interfaces;
 using EternityWebServiceApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EternityWebServiceApp.Controllers
@@ -8,9 +10,9 @@ namespace EternityWebServiceApp.Controllers
     [Authorize]
     public class CityController : Controller
     {
-        private readonly IRepository<City> _repository;
+        private readonly IImageRepository<City> _repository;
 
-        public CityController(IRepository<City> repository)
+        public CityController(IImageRepository<City> repository)
         {
             _repository = repository;
         }
@@ -26,7 +28,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAsync(City newCity)
+        public IActionResult CreateAsync(City newCity, IFormFileCollection uploadedFiles)
         {
             if (ModelState.IsValid)
             {
@@ -37,7 +39,7 @@ namespace EternityWebServiceApp.Controllers
                     Description = newCity.Description
                 };
 
-                _repository.Create(city);
+                _repository.Create(city, uploadedFiles);
                 return RedirectToAction("Index");
             }
 

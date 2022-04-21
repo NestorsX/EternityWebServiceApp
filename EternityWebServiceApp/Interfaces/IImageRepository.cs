@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace EternityWebServiceApp.Interfaces
 {
-    public interface IRepository<T>
+    public interface IImageRepository<T>
     {
         IEnumerable<T> Get();
 
         T Get(int id);
 
-        void Create(T obj);
+        void Create(T obj, IFormFileCollection uploadedFiles);
 
         void Update(T obj);
 
