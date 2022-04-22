@@ -12,9 +12,5 @@ namespace EternityWebServiceApp.Models
 
         [Required(ErrorMessage = "Введите описание")]
         public string Description { get; set; }
-
-        public string ImageFolderPath { get; set; }
-
-        public int ImageCount { get; set; }
     }
 }

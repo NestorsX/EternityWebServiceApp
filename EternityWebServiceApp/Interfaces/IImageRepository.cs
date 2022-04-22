@@ -11,7 +11,7 @@ namespace EternityWebServiceApp.Interfaces
 
         void Create(T obj, IFormFileCollection uploadedFiles);
 
-        void Update(T obj);
+        void Update(T obj, IFormFileCollection uploadedFiles);
 
         void Delete(int id);
     }

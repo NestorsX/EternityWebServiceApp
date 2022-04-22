@@ -35,39 +35,56 @@ namespace EternityWebServiceApp.Services
             _context.SaveChanges();
             if (uploadedFiles.Count > 0)
             {
-                if (!Directory.Exists($"{_appEnvironment.WebRootPath}\\Images\\Cities\\{city.CityId}"))
+                string path = $"{_appEnvironment.WebRootPath}/Images/Cities/{city.CityId}";
+                if (!Directory.Exists(path))
                 {
-                    Directory.CreateDirectory($"{_appEnvironment.WebRootPath}\\Images\\Cities\\{city.CityId}");
+                    Directory.CreateDirectory(path);
                 }
 
-                var imageCount = 0;
                 foreach (var file in uploadedFiles)
                 {
-                    imageCount++;
-                    string path = $"{_appEnvironment.WebRootPath}/Images/Cities/{city.CityId}/{imageCount}.jpg";
-                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    string filePath = $"{path}/{file.FileName}";
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
                 }
-
-                city.ImageFolderPath = $"Images/Cities/{city.CityId}";
-                city.ImageCount = imageCount;
-                _context.Cities.Update(city);
-                _context.SaveChanges();
             }
         }
 
-        public void Update(City city)
+        public void Update(City city, IFormFileCollection uploadedFiles)
         {
             _context.Cities.Update(city);
             _context.SaveChanges();
+            if (uploadedFiles.Count > 0)
+            {
+                string path = $"{_appEnvironment.WebRootPath}/Images/Cities/{city.CityId}";
+                if (Directory.Exists(path))
+                {
+                    Directory.Delete(path, true);
+                }
+
+                Directory.CreateDirectory(path);
+                foreach (var file in uploadedFiles)
+                {
+                    string filePath = $"{path}/{file.FileName}";
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                }
+            }
         }
 
         public void Delete(int id)
         {
             _context.Cities.Remove(Get(id));
             _context.SaveChanges();
+            string path = $"{_appEnvironment.WebRootPath}/Images/Cities/{id}";
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+            }
         }
     }
 }

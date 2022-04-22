@@ -29,12 +29,12 @@ namespace EternityWebServiceApp
                 options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
             });
 
-            services.AddScoped<IRepository<User>, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRepository<Role>, RoleRepository>();
             services.AddScoped<IRepository<Game>, GameRepository>();
             services.AddScoped<IGameScoreRepository, GameScoreRepository>();
             services.AddScoped<IImageRepository<City>, CityRepository>();
-            services.AddScoped<IRepository<Attraction>, AttractionRepository>();
+            services.AddScoped<IImageRepository<Attraction>, AttractionRepository>();
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {

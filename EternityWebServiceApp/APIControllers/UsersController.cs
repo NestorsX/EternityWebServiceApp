@@ -18,14 +18,14 @@ namespace EternityWebServiceApp.APIControllers
             _context = context;
         }
 
-        // Gets the list of all users
+        // Получение списка всех пользователей
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
             return await _context.Users.ToListAsync();
         }
 
-        // Gets one user by id (api/users/1)
+        // Получение пользователя по id
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> Get(int id)
         {
@@ -38,6 +38,7 @@ namespace EternityWebServiceApp.APIControllers
             return new ObjectResult(user);
         }
 
+        // Получение пользователя по логину и паролю
         [HttpGet("auth/{username}/{password}")]
         public async Task<ActionResult<User>> Get(string username, string password)
         {
@@ -50,7 +51,7 @@ namespace EternityWebServiceApp.APIControllers
             return new ObjectResult(user);
         }
 
-        // Inserts user into table (api/users)
+        // Добавление нового пользователя
         [HttpPost]
         public async Task<ActionResult<User>> Post(User user)
         {
@@ -64,7 +65,7 @@ namespace EternityWebServiceApp.APIControllers
             return Ok(user);
         }
 
-        // Updates user (api/users)
+        // Обновление записи пользователя
         [HttpPut]
         public async Task<ActionResult<User>> Put(User user)
         {
@@ -81,21 +82,6 @@ namespace EternityWebServiceApp.APIControllers
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
             return Ok(user);
-        }
-
-        // Deletes user by id
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> Delete(int id)
-        {
-            User user = await _context.Users.FirstOrDefaultAsync(x => x.UserId == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-            return Ok();
         }
     }
 }

@@ -20,7 +20,5 @@ namespace EternityWebServiceApp.Models
 
         [Required(ErrorMessage = "Укажите роль")]
         public int RoleId { get; set; }
-
-        public string ImagePath { get; set; }
     }
 }

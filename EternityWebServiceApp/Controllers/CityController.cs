@@ -1,7 +1,6 @@
 ﻿using EternityWebServiceApp.Interfaces;
 using EternityWebServiceApp.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,14 +54,14 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(City newCity)
+        public ActionResult Edit(City newCity, IFormFileCollection uploadedFiles)
         {
             City city = _repository.Get((int)newCity.CityId);
             if (ModelState.IsValid)
             {
                 city.Title = newCity.Title;
                 city.Description = newCity.Description;
-                _repository.Update(city);
+                _repository.Update(city, uploadedFiles);
                 return RedirectToAction("Index");
             }
 

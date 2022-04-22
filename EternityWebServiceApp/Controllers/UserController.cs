@@ -1,6 +1,7 @@
 ﻿using EternityWebServiceApp.Interfaces;
 using EternityWebServiceApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -10,9 +11,9 @@ namespace EternityWebServiceApp.Controllers
     public class UserController : Controller
     {
         private readonly EternityDBContext _context;
-        private readonly IRepository<User> _repository;
+        private readonly IUserRepository _repository;
 
-        public UserController(EternityDBContext context, IRepository<User> repository)
+        public UserController(EternityDBContext context, IUserRepository repository)
         {
             _context = context;
             _repository = repository;
@@ -31,7 +32,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAsync(User newUser)
+        public IActionResult CreateAsync(User newUser, IFormFile uploadedFile)
         {
             ViewBag.Roles = _context.Roles;
             if (_context.Users.FirstOrDefault(x => x.Email == newUser.Email) != null)
@@ -60,7 +61,7 @@ namespace EternityWebServiceApp.Controllers
                     RoleId = newUser.RoleId,
                 };
 
-                _repository.Create(user);
+                _repository.Create(user, uploadedFile);
                 return RedirectToAction("Index");
             }
 
@@ -86,7 +87,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(User newUser)
+        public ActionResult Edit(User newUser, IFormFile uploadedFile)
         {
             ViewBag.Roles = _context.Roles;
             User user = _repository.Get((int)newUser.UserId);
@@ -112,7 +113,7 @@ namespace EternityWebServiceApp.Controllers
                 user.UserName = newUser.UserName;
                 user.Password = newUser.Password;
                 user.RoleId = newUser.RoleId;
-                _repository.Update(user);
+                _repository.Update(user, uploadedFile);
                 return RedirectToAction("Index");
             }
 

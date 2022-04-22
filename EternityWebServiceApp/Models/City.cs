@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EternityWebServiceApp.Models
 {
@@ -12,9 +13,5 @@ namespace EternityWebServiceApp.Models
 
         [Required(ErrorMessage = "Введите описание")]
         public string Description { get; set; }
-
-        public string ImageFolderPath { get; set; }
-        
-        public int ImageCount { get; set; }
     }
 }
