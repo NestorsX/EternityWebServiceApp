@@ -1,6 +1,7 @@
 ﻿using EternityWebServiceApp.Interfaces;
 using EternityWebServiceApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EternityWebServiceApp.Controllers
@@ -8,9 +9,9 @@ namespace EternityWebServiceApp.Controllers
     [Authorize]
     public class AttractionController : Controller
     {
-        private readonly IRepository<Attraction> _repository;
+        private readonly IImageRepository<Attraction> _repository;
 
-        public AttractionController(IRepository<Attraction> repository)
+        public AttractionController(IImageRepository<Attraction> repository)
         {
             _repository = repository;
         }
@@ -26,22 +27,22 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAsync(Attraction newCity)
+        public IActionResult CreateAsync(Attraction newAttraction, IFormFileCollection uploadedFiles)
         {
             if (ModelState.IsValid)
             {
                 var attraction = new Attraction
                 {
                     AttractionId = null,
-                    Title = newCity.Title,
-                    Description = newCity.Description
+                    Title = newAttraction.Title,
+                    Description = newAttraction.Description
                 };
 
-                _repository.Create(attraction);
+                _repository.Create(attraction, uploadedFiles);
                 return RedirectToAction("Index");
             }
 
-            return View(newCity);
+            return View(newAttraction);
         }
 
         public ActionResult Edit(int id)
@@ -53,18 +54,18 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Attraction newCity)
+        public ActionResult Edit(Attraction newAttraction, IFormFileCollection uploadedFiles)
         {
-            Attraction attraction = _repository.Get((int)newCity.AttractionId);
+            Attraction attraction = _repository.Get((int)newAttraction.AttractionId);
             if (ModelState.IsValid)
             {
-                attraction.Title = newCity.Title;
-                attraction.Description = newCity.Description;
-                _repository.Update(attraction);
+                attraction.Title = newAttraction.Title;
+                attraction.Description = newAttraction.Description;
+                _repository.Update(attraction, uploadedFiles);
                 return RedirectToAction("Index");
             }
 
-            return View(newCity);
+            return View(newAttraction);
         }
 
         [HttpGet]
