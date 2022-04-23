@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Http;
+using EternityWebServiceApp.Models;
 
 namespace EternityWebServiceApp.APIControllers
 {
@@ -24,7 +25,7 @@ namespace EternityWebServiceApp.APIControllers
 
         // Получение списка картинок в конкретной папке (например /Cities/1)
         [HttpGet("{category}/{id}")]
-        public ActionResult<IEnumerable<string>> Get(string category, string id)
+        public ActionResult<IEnumerable<Image>> Get(string category, string id)
         {
             string path = $"{_appEnvironment.WebRootPath}/Images/{category}/{id}";
             if (!Directory.Exists(path))
@@ -32,7 +33,14 @@ namespace EternityWebServiceApp.APIControllers
                 return NotFound();
             }
 
-            return Directory.GetFiles(path).Select(x => Path.GetFileName(x)).ToList();
+            IEnumerable<string> imageNames = Directory.GetFiles(path).Select(x => Path.GetFileName(x)).ToList();
+            IEnumerable<Image> images = new List<Image>();
+            foreach (string imageName in imageNames)
+            {
+                images = images.Append(new Image() { Path = imageName });
+            }
+
+            return new ObjectResult(images);
         }
 
         // Добавление аватара пользователю
