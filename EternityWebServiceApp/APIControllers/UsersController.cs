@@ -60,6 +60,7 @@ namespace EternityWebServiceApp.APIControllers
                 return BadRequest();
             }
 
+            user.RoleId = 2;
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return Ok(user);
@@ -79,6 +80,7 @@ namespace EternityWebServiceApp.APIControllers
                 return NotFound();
             }
 
+            user.RoleId = 2;
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
             return Ok(user);

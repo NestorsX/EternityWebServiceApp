@@ -11,6 +11,8 @@ namespace EternityWebServiceApp
         public DbSet<GameScore> GameScores { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Attraction> Attractions { get; set; }
+        public DbSet<CityBookmark> CityBookmarks { get; set; }
+        public DbSet<AttractionBookmark> AttractionBookmarks { get; set; }
 
         public EternityDBContext(DbContextOptions<EternityDBContext> options) : base(options) { }
 
