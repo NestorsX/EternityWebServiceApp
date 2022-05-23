@@ -11,7 +11,7 @@ namespace EternityWebServiceApp.Models
 
         public int GameId { get; set; }
 
-        public double Score { get; set; }
+        public string Score { get; set; }
 
         public User User { get; set; }
 

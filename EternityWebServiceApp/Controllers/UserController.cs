@@ -103,7 +103,6 @@ namespace EternityWebServiceApp.Controllers
 
             if (newUser.RoleId == 0)
             {
-                ViewData["RoleId"] = 0;
                 ModelState.AddModelError("RoleId", "Выберите роль");
             }
 
@@ -117,6 +116,7 @@ namespace EternityWebServiceApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewData["RoleId"] = (int)user.RoleId;
             return View(newUser);
         }
 

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
-using System;
 using Microsoft.AspNetCore.Http;
 using EternityWebServiceApp.Models;
 
@@ -15,7 +13,7 @@ namespace EternityWebServiceApp.APIControllers
     public class ImagesController : ControllerBase
     {
         private readonly EternityDBContext _context;
-        IWebHostEnvironment _appEnvironment;
+        private readonly IWebHostEnvironment _appEnvironment;
 
         public ImagesController(EternityDBContext context, IWebHostEnvironment appEnvironment)
         {
@@ -44,10 +42,10 @@ namespace EternityWebServiceApp.APIControllers
         }
 
         // Добавление аватара пользователю
-        [HttpPost]
-        public ActionResult Post(int userId, IFormFile image)
+        [HttpPost("{id}")]
+        public ActionResult Post(int id, IFormFile image)
         {
-            if (_context.Users.FirstOrDefault(x => x.UserId == userId) == null)
+            if (_context.Users.FirstOrDefault(x => x.UserId == id) == null)
             {
                 return BadRequest();
             }
@@ -57,7 +55,7 @@ namespace EternityWebServiceApp.APIControllers
                 return BadRequest();
             }
 
-            string path = $"{_appEnvironment.WebRootPath}/Images/Users/{userId}";
+            string path = $"{_appEnvironment.WebRootPath}/Images/Users/{id}";
             if (Directory.Exists(path))
             {
                 Directory.Delete(path, true);
