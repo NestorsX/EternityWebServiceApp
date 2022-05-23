@@ -4,25 +4,29 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Достопримечательность</th>
-        <th>Описание</th>
-        <th><a asp-controller="Attraction" asp-action="Create">Добавить</a></th>
-    </tr>
-    
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table">
         <tr>
-            <td>@item.AttractionId</td>
-            <td>@item.Title</td>
-            <td style="white-space:pre">@item.Description</td>
-
-            <td>
-                <a asp-controller="Attraction" asp-action="Edit" asp-route-id="@item.AttractionId">Изменить</a> |
-                <a asp-controller="Attraction" asp-action="Delete" asp-route-id="@item.AttractionId">Удалить</a>
-            </td>
+            <th>ID</th>
+            <th>Достопримечательность</th>
+            <th>Описание</th>
+            <th><a asp-controller="Attraction" asp-action="Create">Добавить</a></th>
         </tr>
-    }
-</table>
+    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AttractionId</td>
+                <td>@item.Title</td>
+                <td>
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">@item.Description</span>
+                </td>
+
+                <td>
+                    <a asp-controller="Attraction" asp-action="Edit" asp-route-id="@item.AttractionId">Изменить</a> |
+                    <a asp-controller="Attraction" asp-action="Delete" asp-route-id="@item.AttractionId">Удалить</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

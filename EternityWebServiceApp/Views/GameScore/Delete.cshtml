@@ -4,20 +4,22 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Пользователь</th>
-        <th>Игра</th>
-        <th>Счет</th>
-    </tr>
-    <tr>
-        <td>@Model.GameScoreId</td>
-        <td>@Model.User.UserName</td>
-        <td>@Model.Game.Name</td>
-        <td>@Model.Score</td>
-    </tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Пользователь</th>
+            <th>Игра</th>
+            <th>Счет</th>
+        </tr>
+        <tr>
+            <td>@Model.GameScoreId</td>
+            <td>@Model.User.UserName</td>
+            <td>@Model.Game.Name</td>
+            <td>@Model.Score</td>
+        </tr>
+    </table>
+</div>
  
 <form asp-action="Delete" asp-controller="GameScore" method="post">
     <div class="form-group">

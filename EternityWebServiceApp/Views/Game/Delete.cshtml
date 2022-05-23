@@ -4,16 +4,18 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Игра</th>
-    </tr>
-    <tr>
-        <td>@Model.GameId</td>
-        <td>@Model.Name</td>
-    </tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Игра</th>
+        </tr>
+        <tr>
+            <td>@Model.GameId</td>
+            <td>@Model.Name</td>
+        </tr>
+    </table>
+</div>
  
 <form asp-action="Delete" asp-controller="Game" method="post">
     <div class="form-group">

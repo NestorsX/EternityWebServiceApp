@@ -4,23 +4,25 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Игра</th>
-        <th><a asp-controller="Game" asp-action="Create">Добавить</a></th>
-    </tr>
-    
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table">
         <tr>
-            <td>@item.GameId</td>
-            <td>@item.Name</td>
-
-            <td>
-                <a asp-controller="Game" asp-action="Edit" asp-route-id="@item.GameId">Изменить</a> |
-                <a asp-controller="Game" asp-action="Delete" asp-route-id="@item.GameId">Удалить</a>
-            </td>
+            <th>ID</th>
+            <th>Игра</th>
+            <th><a asp-controller="Game" asp-action="Create">Добавить</a></th>
         </tr>
-    }
-</table>
+    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.GameId</td>
+                <td>@item.Name</td>
+
+                <td>
+                    <a asp-controller="Game" asp-action="Edit" asp-route-id="@item.GameId">Изменить</a> |
+                    <a asp-controller="Game" asp-action="Delete" asp-route-id="@item.GameId">Удалить</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
