@@ -9,17 +9,17 @@
     <div class="validation" asp-validation-summary="ModelOnly"></div>
     <div>
         <div class="form-group">
-            <label asp-for="Title">Достопримечательность</label>
-            <input type="text" asp-for="Title" class="form-control form-control-sm" />
+            <label asp-for="Title">Достопримечательность*</label>
+            <input type="text" asp-for="Title" class="form-control form-control-sm" required />
             <span asp-validation-for="Title"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Description">Описание</label>
-            <textarea asp-for="Description" class="form-control form-control-sm"></textarea>
+            <label asp-for="Description">Описание*</label>
+            <textarea asp-for="Description" class="form-control form-control-sm" required></textarea>
             <span asp-validation-for="Description"></span>
         </div>
         <div class="form-group">
-            <label>Изображения</label>
+            <label>Изображения*</label>
             <input required type="file" name="uploadedFiles" accept=".png,.jpg,.jpeg" multiple="multiple" class="form-control form-control-sm" />
         </div>
         <div class="form-group">

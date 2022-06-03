@@ -1,0 +1,41 @@
+﻿@model EternityWebServiceApp.ViewModels.DataReferenceViewModel
+ 
+@{
+    ViewData["Title"] = "Новая связь";
+}
+<h2>@ViewData["Title"]</h2>
+ 
+<form asp-action="Create" asp-controller="DataReference" method="post" enctype="multipart/form-data">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="form-group">
+            <label asp-for="CityId">Город*</label>
+            <select asp-for="CityId" class="form-control form-control-sm" required >
+                <option value="">Выберите город</option>
+                @foreach (City city in ViewBag.Cities)
+                {
+                    <option value="@city.CityId">@city.Title</option>
+                }
+            </select>
+            <span asp-validation-for="CityId"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AttractionId">Достопримечательность*</label>
+            <select asp-for="AttractionId" class="form-control form-control-sm" required >
+                <option value="">Выберите достопримечательность</option>
+                @foreach (Attraction attraction in ViewBag.Attractions)
+                {
+                    <option value="@attraction.AttractionId">@attraction.Title</option>
+                }
+            </select>
+            <span asp-validation-for="AttractionId"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+        </div>
+    </div>
+</form>
+ 
+<div>
+    <a asp-controller="DataReference" asp-action="Index">Вернуться к списку</a>
+</div>

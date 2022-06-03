@@ -1,6 +1,7 @@
 using EternityWebServiceApp.Interfaces;
 using EternityWebServiceApp.Models;
 using EternityWebServiceApp.Services;
+using EternityWebServiceApp.ViewModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +32,7 @@ namespace EternityWebServiceApp
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRepository<Role>, RoleRepository>();
-            services.AddScoped<IRepository<Game>, GameRepository>();
+            services.AddScoped<IRepository<DataReferenceViewModel>, DataReferenceRepository>();
             services.AddScoped<IGameScoreRepository, GameScoreRepository>();
             services.AddScoped<IImageRepository<City>, CityRepository>();
             services.AddScoped<IImageRepository<Attraction>, AttractionRepository>();

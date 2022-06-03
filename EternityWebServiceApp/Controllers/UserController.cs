@@ -45,11 +45,6 @@ namespace EternityWebServiceApp.Controllers
                 ModelState.AddModelError("Username", "Никнейм уже используется");
             }
 
-            if (newUser.RoleId == 0)
-            {
-                ModelState.AddModelError("RoleId", "Выберите роль");
-            }
-
             if (ModelState.IsValid)
             {
                 var user = new User
@@ -99,11 +94,6 @@ namespace EternityWebServiceApp.Controllers
             if (_context.Users.FirstOrDefault(x => x.UserName == newUser.UserName && newUser.UserName != user.UserName) != null)
             {
                 ModelState.AddModelError("Username", "Никнейм уже используется");
-            }
-
-            if (newUser.RoleId == 0)
-            {
-                ModelState.AddModelError("RoleId", "Выберите роль");
             }
 
             if (ModelState.IsValid)

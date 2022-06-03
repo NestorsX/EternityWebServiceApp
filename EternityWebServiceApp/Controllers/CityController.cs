@@ -16,7 +16,7 @@ namespace EternityWebServiceApp.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View(_repository.Get());
         }

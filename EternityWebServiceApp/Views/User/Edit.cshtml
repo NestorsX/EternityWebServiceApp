@@ -9,34 +9,27 @@
     <div>
         <input type="hidden" asp-for="UserId" />
         <div class="form-group">
-            <label asp-for="Email"></label>
-            <input type="text" asp-for="Email" class="form-control" />
+            <label asp-for="Email">Email*</label>
+            <input type="text" asp-for="Email" class="form-control" required />
             <span asp-validation-for="Email"></span>
         </div>
         <div class="form-group">
-            <label asp-for="UserName">Никнейм</label>
-            <input type="text" asp-for="UserName" class="form-control" />
+            <label asp-for="UserName">Никнейм*</label>
+            <input type="text" asp-for="UserName" class="form-control" required />
             <span asp-validation-for="UserName"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Password">Пароль</label>
-            <input type="text" asp-for="Password" class="form-control" />
+            <label asp-for="Password">Пароль*</label>
+            <input type="text" asp-for="Password" class="form-control" required />
             <span asp-validation-for="Password"></span>
         </div>
         <div class="form-group">
-            <label asp-for="RoleId">Роль</label>
-            <select asp-for="RoleId" class="form-control form-control-sm" >
-                <option value="0">Выберите роль</option>
+            <label asp-for="RoleId">Роль*</label>
+            <select asp-for="RoleId" class="form-control form-control-sm" required >
+                <option value="">Выберите роль</option>
                 @foreach (Role role in ViewBag.Roles)
                 {
-                    @if ((int)ViewData["RoleId"] == role.RoleId)
-                    {
-                        <option value="@role.RoleId" selected>@role.Name</option>
-                    }
-                    else
-                    {
-                        <option value="@role.RoleId">@role.Name</option>
-                    }
+                    <option value="@role.RoleId">@role.Name</option>
                 }
             </select>
             <span asp-validation-for="RoleId"></span>

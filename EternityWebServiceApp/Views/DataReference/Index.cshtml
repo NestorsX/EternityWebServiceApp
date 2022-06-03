@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EternityWebServiceApp.ViewModels.DataReferenceViewModel>
+@{
+    ViewData["Title"] = "Связи";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Город</th>
+            <th>Достопримечательность</th>
+            <th><a asp-controller="DataReference" asp-action="Create">Добавить</a></th>
+        </tr>
+    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DataReferenceId</td>
+                <td>@item.CityName</td>
+                <td>@item.AttractionName</td>
+
+                <td>
+                    <a asp-controller="DataReference" asp-action="Edit" asp-route-id="@item.DataReferenceId">Изменить</a> |
+                    <a asp-controller="DataReference" asp-action="Delete" asp-route-id="@item.DataReferenceId">Удалить</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
