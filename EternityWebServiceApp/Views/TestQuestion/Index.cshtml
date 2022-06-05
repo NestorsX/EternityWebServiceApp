@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TestQuestion>
+@{
+    ViewData["Title"] = "Города";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Вопрос</th>
+            <th>Правильный ответ</th>
+            <th>Неправильный ответ</th>
+            <th>Неправильный ответ</th>
+            <th>Неправильный ответ</th>
+            <th><a asp-controller="TestQuestion" asp-action="Create">Добавить</a></th>
+        </tr>
+    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TestQuestionId</td>
+                <td>
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">@item.Question</span>
+                </td>
+                <td>
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">@item.RightAnswer</span>
+                </td>
+                <td>
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">@item.WrongAnswer1</span>
+                </td>
+                <td>
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">@item.WrongAnswer2</span>
+                </td>
+                <td>
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">@item.WrongAnswer3</span>
+                </td>
+
+                <td>
+                    <a asp-controller="TestQuestion" asp-action="Edit" asp-route-id="@item.TestQuestionId">Изменить</a> |
+                    <a asp-controller="TestQuestion" asp-action="Delete" asp-route-id="@item.TestQuestionId">Удалить</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

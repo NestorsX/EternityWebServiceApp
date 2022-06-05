@@ -36,6 +36,7 @@ namespace EternityWebServiceApp
             services.AddScoped<IGameScoreRepository, GameScoreRepository>();
             services.AddScoped<IImageRepository<City>, CityRepository>();
             services.AddScoped<IImageRepository<Attraction>, AttractionRepository>();
+            services.AddScoped<IImageRepository<TestQuestion>, TestQuestionRepository>();
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {

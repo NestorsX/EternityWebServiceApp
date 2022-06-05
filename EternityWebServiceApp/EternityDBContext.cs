@@ -11,6 +11,7 @@ namespace EternityWebServiceApp
         public DbSet<Attraction> Attractions { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<GameScore> GameScores { get; set; }
+        public DbSet<TestQuestion> TestQuestions { get; set; }
         public DbSet<DataCategory> DataCategories { get; set; }
         public DbSet<ActionCategory> ActionCategories { get; set; }
         public DbSet<DataAction> DataActions { get; set; }
