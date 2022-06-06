@@ -63,7 +63,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(DataReference newDataReference)
+        public ActionResult Edit(DataReferenceViewModel newDataReference)
         {
             DataReferenceViewModel dataReference = _repository.Get((int)newDataReference.DataReferenceId);
             if (dataReference.CityId == newDataReference.CityId && dataReference.AttractionId == newDataReference.AttractionId)

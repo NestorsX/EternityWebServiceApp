@@ -32,7 +32,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAsync(User newUser, IFormFile uploadedFile)
+        public IActionResult Create(User newUser, IFormFile uploadedFile)
         {
             ViewBag.Roles = _context.Roles;
             if (_context.Users.FirstOrDefault(x => x.Email == newUser.Email) != null)

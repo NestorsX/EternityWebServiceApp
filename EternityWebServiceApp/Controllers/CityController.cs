@@ -27,7 +27,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAsync(City newCity, IFormFileCollection uploadedFiles)
+        public IActionResult Create(City newCity, IFormFileCollection uploadedFiles)
         {
             if (ModelState.IsValid)
             {

@@ -27,7 +27,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAsync(TestQuestion newTestQuestion, IFormFileCollection uploadedFiles)
+        public IActionResult Create(TestQuestion newTestQuestion, IFormFileCollection uploadedFiles)
         {
             if (ModelState.IsValid)
             {

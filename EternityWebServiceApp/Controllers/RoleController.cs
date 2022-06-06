@@ -29,7 +29,7 @@ namespace EternityWebServiceApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAsync(Role newRole)
+        public IActionResult Create(Role newRole)
         {
             if (_context.Roles.FirstOrDefault(x => x.Name == newRole.Name) != null)
             {
