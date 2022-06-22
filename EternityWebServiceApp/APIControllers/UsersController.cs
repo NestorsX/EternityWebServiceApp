@@ -25,7 +25,7 @@ namespace EternityWebServiceApp.APIControllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
-            return await _context.Users.ToListAsync();
+            return Ok(await _context.Users.ToListAsync());
         }
 
         // Получение пользователя по id
@@ -38,7 +38,7 @@ namespace EternityWebServiceApp.APIControllers
                 return NotFound();
             }
 
-            return new ObjectResult(user);
+            return Ok(user);
         }
 
         // Получение пользователя по логину и паролю
@@ -51,7 +51,7 @@ namespace EternityWebServiceApp.APIControllers
                 return NotFound();
             }
 
-            return new ObjectResult(user);
+            return Ok(user);
         }
 
         // Добавление нового пользователя
@@ -135,9 +135,9 @@ namespace EternityWebServiceApp.APIControllers
         private static string CreateTemporaryPassword()
         {
             var newPassword = new StringBuilder();
-            string symbolsAlphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+-<=>?@[]^_{}~abcdefghijklmnopqrstuvwxyz";
+            string symbolsAlphabet = "0123456789abcdefghijklmnopqrstuvwxyz";
             var rnd = new Random();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 6; i++)
             {
                 newPassword.Append(symbolsAlphabet[rnd.Next(0, symbolsAlphabet.Length - 1)]);
             }
