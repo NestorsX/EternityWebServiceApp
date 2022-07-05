@@ -21,7 +21,7 @@ namespace EternityWebServiceApp.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Roles = _context.Roles;
+            ViewBag.Roles = _context.Roles;  //список ролей
             return View(_repository.Get());
         }
 

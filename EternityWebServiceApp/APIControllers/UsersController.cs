@@ -11,7 +11,8 @@ using System;
 namespace EternityWebServiceApp.APIControllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    // путь доступа к контроллеру
+    [Route("api/[controller]")] 
     public class UsersController : ControllerBase
     {
         private readonly EternityDBContext _context;
